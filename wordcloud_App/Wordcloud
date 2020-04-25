@@ -1,0 +1,47 @@
+"""
+    author ：Tiger Z
+    Time   ：2020-4-24 19:45:24
+    Comment：
+        第三方库 wordcloud “词云”的基本用法示例
+        cmd命令行安装
+        pip install wordcloud
+操作步骤：
+1.配置对象参数
+2.加载词云文本
+3.输出词云文件
+
+转换过程：
+           文本
+            |
+           \|/
+1.分隔：以空格分隔单词
+2.统计：单次出现次数并过滤
+3.字体：根据统计配置字号
+4.布局：颜色、环境、尺寸
+            |
+           \|/
+           词云
+w = wordcloud.WordCloud( <Para> )
+width: 指定词云对象生成图片的宽度，默认400像素
+height:指定词云对象生成图片的高度，默认200像素
+min_font_size:指定词云中字体的最小字号，默认4号
+max_font_size:指定词云中字体的最大字号，根据高度自动调节
+font_step:指定词云中字体字号的步进间隔，默认为1
+font_path:指定字体文件的路径，默认None
+max_words:指定词云中最大的显示单词数，默认200
+stop_words:指定词云的排除词列表，即不显示的单词列表
+mask:指定词云形状，默认长方形，需要应用imread()函数
+background_color:指定词云屠屏的背景颜色，默认为黑色
+"""
+import wordcloud
+
+if __name__ == '__main__':
+    w = wordcloud.WordCloud()
+    with open(rb"test.txt") as f:
+        text = f.read()
+        # print(type(text))
+    # 加载文本 类型为string
+    w.generate(text)
+
+    # 将词云输出至指定图片
+    w.to_file("pyworcloud.png")
